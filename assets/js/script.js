@@ -1,53 +1,50 @@
-var btn = document.getElementById("add");
-var tbody = document.getElementById("tbody");
+function Users (_name, _surname, _birth) {
+    this.name = _name;
+    this.surname = _surname;
+    this.birth = new Date(_birth);
 
-function Utente(name, surname, birth) {
-  this.name = name;
-  this.surname = surname;
-  this.birth = birth;
+    this.createRows = () => {
+        let tr = document.createElement('tr');
+        let tdName = document.createElement('td');
+        tdName.innerText = this.name;
+        let tdSurn = document.createElement('td');
+        tdSurn.innerText = this.surname;
+        let tdAge = document.createElement('td');
+        tdAge.innerText = this.calcAge();
+        
+        tr.appendChild(tdName);
+        tr.appendChild(tdSurn);
+        tr.appendChild(tdAge);
 
-  this.calcolaEta = function () {
-    let today = new Date();
-    let todayYear = new Date().getFullYear();
-    let todayMonth = new Date().getMonth() + 1;
-    let todayDay = new Date().getDate();
-
-    let birthDate = new Date(document.getElementById("birth").value);
-    let birthYear = new Date(
-      document.getElementById("birth").value
-    ).getFullYear();
-    let birthMonth =
-      new Date(document.getElementById("birth").value).getMonth() + 1;
-    let birthDay = new Date(document.getElementById("birth").value).getDate();
-
-    if (todayMonth < birthMonth) {
-      return todayYear - birthYear - 1;
-    } else if ((todayMonth = birthMonth && birthDay > todayDay)) {
-      return todayYear - birthYear - 1;
-    } else {
-      return todayYear - birthYear;
+        return tr
     }
-  };
+
+    this.calcAge = () => {
+        let currentYear = new Date().getFullYear();
+        let currentMonth = new Date().getMonth();
+        let currentDay = new Date().getDate();
+
+        let birthYear = this.birth.getFullYear();
+        let birthMonth = this.birth.getMonth();
+        let birthDay = this.birth.getDate();
+
+        let age = currentYear - birthYear;
+
+        if ((currentMonth == birthMonth) && (currentDay < birthDay)){
+            age = age - 1;
+        }
+        return age;
+    }
 }
 
-btn.addEventListener("click", () => {
-  let name = document.getElementById("name").value;
-  let surname = document.getElementById("surname").value;
-  let birth = document.getElementById("birth").value;
-  let utente = new Utente(name, surname, birth);
+// taking input data
+btn = document.getElementById('add');
+btn.addEventListener('click', function (){
+    let newName = document.getElementById('name').value;
+    let newSurname = document.getElementById('surname').value;
+    let newBirth = document.getElementById('birth').value;
 
-  function calcolaEta() {
-    let today = new Date().getFullYear();
-    let birthDate = new Date(
-      document.getElementById("birth").value
-    ).getFullYear();
-    let eta = today - birthDate;
-    return eta;
-  }
+let user = new Users (newName, newSurname, newBirth)
 
-  tbody.innerHTML += `<tr>
-    <td>${utente.name}</td>
-    <td>${utente.surname}</td>
-    <td>${utente.calcolaEta()}</td>
-    </tr>`;
-});
+document.getElementById("tbody").append(user.createRows())
+})

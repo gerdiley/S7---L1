@@ -18,20 +18,21 @@
 
 
 <body>
-    <div class="container">
-        <div class="row">
+    <h1 class="text-center display-5 ">Fill your form!</h1>
+    <div class="container mt-5 border rounded">
+        <div class="row border p-1">
             <div class="col-6">
-                <form class="row g-3">
+                <form class="row g-3" id="form">
                     <div class="col-12">
-                        <label for="name" class="form-label"> Nome</label>
-                        <input type="text" id="name" placeholder="Inserisci il tuo nome" class="form-control">
+                        <label for="name" class="form-label"> First Name</label>
+                        <input type="text" id="name" placeholder="Insert your first name" class="form-control">
                     </div>
                     <div class="col-12">
-                        <label for="surname" class="form-label"> Cognome</label>
-                        <input type="text" id="surname" placeholder="Inserisci il tuo nome" class="form-control">
+                        <label for="surname" class="form-label"> Second name</label>
+                        <input type="text" id="surname" placeholder="Insert your family name" class="form-control">
                     </div>
                     <div class="col-6">
-                        <label for="name" class="form-label">Data di nascita</label>
+                        <label for="name" class="form-label">Birth Date</label>
                         <input type="date" id="birth" class="form-control">
                     </div>
                     <div class="col-12">
@@ -43,9 +44,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>Cognome</th>
-                                <th>Eta</th>
+                                <th>First Name</th>
+                                <th>Second name</th>
+                                <th>Age</th>
                             </tr>
                         </thead>
                         <tbody id="tbody">
